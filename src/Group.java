@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.*;
 import java.util.Arrays;
 
 public class Group {
@@ -44,7 +45,7 @@ public class Group {
             if (students[i]!=null){
                 System.out.println(students[i].toString());
             } else
-                System.out.println(" Ячейка " + (i+1) + " пуста");
+                break;
         }
     }
 
@@ -81,11 +82,42 @@ public class Group {
                 if (students[i]!=null){
                     System.out.println(students[i].toString());
                 }
-
             }
+        }
+    }
 
+    public void saveDoc (){
+        try (BufferedWriter f = new BufferedWriter(new FileWriter("student.txt")))
+        {
+            for (int i = 0; i <students.length; i++){
+                if (students[i]!=null){
+                    f.write(students[i].toString());
+                    f.newLine();
+                }
+            }
+            System.out.println(" Студенты записаны ");
+        } catch (IOException e){
+            System.out.println("Error");
+        }
+    }
+
+    public void readDoc(){
+        try (BufferedReader f  = new BufferedReader(new FileReader("newStud.txt")))
+        {
+            String str = "";
+            String[] arr = new String[3];
+            for (;(str = f.readLine())!=null;){
+                arr = str.split(" ");
+                int age = Integer.parseInt(arr[2]);
+                double rating = Double.parseDouble(arr[3]);
+                Student st = new Student(arr[0],arr[1],age,rating);
+                addStudents(st);
+            }
+            System.out.println(" Студенты считаны ");
+
+        } catch (IOException e){
+            System.out.println("Error");
         }
 
     }
-
 }
