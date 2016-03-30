@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.operations.Gt;
 
 public class Main {
 
@@ -9,18 +10,12 @@ public class Main {
 //        gr.addStudents(new Student("Виталий","Боженов",25,70));
 //        gr.addStudents(new Student("Арсений","Яценюк",29,60));
 
+//        gr.addNow();
+//        gr.sortBySurname();
 
-        gr.addNow();
-        gr.sortBySurname();
-
-        gr.searchStudent();
-
-
-
-
-
-
-
+        gr.saveDoc();
+        gr.readDoc();
+        gr.showInfo();
 
 
 
